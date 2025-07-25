@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sports Wear Website</title>
+    <style>
+      .button{
+        margin-bottom: 10px;
+        border: none;
+        padding: 10px 8px;
+        cursor: pointer;
+        background-color: rgb(0, 162, 255);
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+        font-family: Arial;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: color 0.1s, background-color 0.1s, padding 0.1s;
+        
+      }
+
+      .button:hover{
+        background-color: white;
+        color: rgb(0, 162, 255);
+      }
+
+      .button:active{
+        padding: 11px 9px;
+      }
+
+      .product-panels{
+        padding: 10px;
+        margin: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        const button = <button>Click</button>;
+        const paragraph = <p>paragraph of text</p>;
+        const productCost = 10;
+        const shippingCost = 5;
+
+        function App(){
+          return (
+            <>
+              <p>Hello, welcome to my website</p>
+              <div>
+                <input placeholder="Email" />
+              </div>
+              <div>
+                <input placeholder="Password" />
+              </div>
+              <button>Login</button>
+              <button>Sgin Up</button>
+            </>
+          );
+        }
+
+        function ProductDetails({name, price, discountPrice, imageSrc}){
+          return (
+            <div class="product-panels">
+              <div>
+                <img src={imageSrc} width="150"/>
+              </div>
+              <p>{name}</p>
+
+              {discountPrice ? (
+                <>
+                  <p><del>Price: ${price}</del></p>
+                  <p>Discount price: ${discountPrice}</p>
+                </>
+              ) : (
+                <p>Price: ${price}</p>
+              )
+            
+            }
+
+              <button class="button">Add to Cart</button>
+            </div>
+          );
+        }
+        function App2(){
+          return(
+            <>
+              <ProductDetails
+                imageSrc = "cotton-socks.png"
+                name ="Cotton socks"
+                price ="10.90" 
+                discountPrice ="5.45"
+                />
+              
+              <ProductDetails
+                imageSrc = "tennis-balls.png"
+                name ="Tennis balls"
+                price ="6.00" />
+              
+              <ProductDetails
+                imageSrc = "plain-t-shirt.png"
+                name ="Plain T-Shirt"
+                price ="7.99" />
+            </>
+          );
+        }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App2 />);
+    </script>
+  </body>
+</html>
